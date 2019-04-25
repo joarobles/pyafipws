@@ -30,7 +30,7 @@ from utils import SimpleXMLElement, SoapClient, SoapFault, date
 from utils import leer, escribir, leer_dbf, guardar_dbf, N, A, I, abrir_conf
 
 
-HOMO = wsfev1.HOMO
+HOMO = True
 DEBUG = False
 XML = False
 TIMEOUT = 30
@@ -371,12 +371,14 @@ if __name__ == "__main__":
     else:
         salida = config.get('WSFEv1','SALIDA')
 
-    if config.has_option('WSAA','URL') and not HOMO:
+    if config.has_option('WSAA','URL'):
         wsaa_url = config.get('WSAA','URL')
+        HOMO = False
     else:
         wsaa_url = None
-    if config.has_option('WSFEv1','URL') and not HOMO:
+    if config.has_option('WSFEv1','URL'):
         wsfev1_url = config.get('WSFEv1','URL')
+        HOMO = False
     else:
         wsfev1_url = None
 
